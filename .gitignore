@@ -1,0 +1,5 @@
+# Tooling / local-only — never publish to the Pages repo
+.claude/
+skills-lock.json
+.DS_Store
+node_modules/
