@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /legacy/
 
-Sitemap: https://arjithdevelopers.com/sitemap.xml
+Sitemap: https://arjithdevelopers.github.io/sitemap.xml
