@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#152d3d">
+<meta name="description" content="Explore Arjith Anugraha in 3D. A virtual tour of three apartment layouts in KK Nagar, Trichy, based on the project brochure.">
+<title>Anugraha — A home, explored.</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23152d3d'/%3E%3Cpath d='M13 49 29 14h6l16 35h-8l-4-10H25l-4 10Zm15-17h8l-4-10Z' fill='%23dfbf83'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/"}}</script>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="#" aria-label="Anugraha home"><span class="brand-icon">A</span><span><span class="brand-small">ARJITH</span><span class="brand-name">ANUGRAHA</span></span></a>
+<div class="address"><span class="location-dot"></span>KK Nagar, Trichy<span class="address-divider"></span>THE VIRTUAL RESIDENCE</div>
+<div class="top-actions"><a class="site-home" href="../" aria-label="Back to Arjith Property Developers website" title="Back to Arjith website">← <span>Arjith home</span></a><button class="icon-button" id="plan-top" title="Original floor plan" aria-label="Original floor plan">▧</button><button class="icon-button" id="help-button" title="Tour controls" aria-label="Tour controls">?</button><button class="icon-button" id="fullscreen" title="Full screen" aria-label="Full screen">⛶</button></div>
+</header>
+<main>
+<aside class="sidebar">
+<div class="eyebrow">WELCOME HOME</div><h1>Every space.<br>A new perspective.</h1><p class="intro">Step inside Anugraha. Explore the building, discover a layout, and walk through your next home.</p>
+<div class="property-stats"><div><strong>15</strong><span>Residences</span></div><div><strong>2 & 3</strong><span>Bedroom homes</span></div></div>
+<div class="section-label">CHOOSE YOUR RESIDENCE<span>01 — 03</span></div>
+<div class="residences" role="group" aria-label="Choose apartment">
+<button class="residence active" data-flat="A" aria-pressed="true"><span class="flat-letter">A</span><span class="flat-copy"><strong>Apartment A</strong><span>3 bedrooms · 1,545 sq. ft.</span></span><span class="flat-arrow">↗</span></button>
+<button class="residence" data-flat="B" aria-pressed="false"><span class="flat-letter">B</span><span class="flat-copy"><strong>Apartment B</strong><span>2 bedrooms · 875 sq. ft.</span></span><span class="flat-arrow">↗</span></button>
+<button class="residence" data-flat="C" aria-pressed="false"><span class="flat-letter">C</span><span class="flat-copy"><strong>Apartment C</strong><span>3 bedrooms · 1,485 sq. ft.</span></span><span class="flat-arrow">↗</span></button>
+</div>
+<button class="primary" id="enter-home">Enter apartment A <span>↗</span></button>
+<button class="text-button" id="view-plan">View original floor plan <span>↗</span></button>
+<div class="sidebar-bottom"><span class="small-mark">APD</span><p>ARJITH PROPERTY DEVELOPERS<br><span>Building homes since 2003</span></p></div>
+</aside>
+<section class="stage" aria-label="Interactive 3D property tour">
+<canvas id="scene" tabindex="0" aria-label="3D model. Drag to orbit. Scroll to zoom. In walkthrough click clear floor space to move, use W A S D or arrow keys, and drag to look."></canvas>
+<div id="loading"><span class="loader"></span><strong>Opening your perspective</strong><span>Loading detailed interiors and high-resolution finishes…</span></div>
+<div class="scene-heading"><span class="eyebrow" id="scene-kicker">THE ADDRESS</span><h2 id="scene-title">Anugraha, in perspective</h2><p id="scene-subtitle">Jayanagar 2nd Street · LIC Colony</p></div>
+<div class="scene-tools"><button id="lighting" class="pill" aria-pressed="false"><span>☀</span> <span id="light-label">Daylight</span></button><button id="reset-view" class="square" title="Reset view" aria-label="Reset view">↺</button></div>
+<div id="floor-selector" class="floor-selector"><span>FLOOR</span><div role="group" aria-label="Choose floor"><button data-floor="5">05</button><button data-floor="4">04</button><button data-floor="3">03</button><button data-floor="2">02</button><button data-floor="1" class="active" aria-pressed="true">01</button></div></div>
+<div id="room-tags" hidden></div>
+<div class="compass"><span>N</span><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3 27 31 20 26 13 31Z" fill="currentColor"/></svg></div>
+<div id="room-panel" hidden><div class="room-top"><span class="eyebrow">YOU ARE HERE</span><span id="room-count"></span></div><strong id="room-name">Living & dining</strong><span id="room-dim"></span><div class="room-navigation"><button id="prev-room" aria-label="Previous room">←</button><select id="room-select" aria-label="Choose a room"></select><button id="next-room" aria-label="Next room">→</button></div><button id="walk-stop" class="pill" hidden>Stop walking</button></div>
+<div id="minimap-wrap" hidden><div class="minimap-heading"><span>YOUR POSITION <b id="minimap-flat">A</b></span><button id="expand-map" aria-label="Maximize position map" title="Maximize position map">⛶</button></div><button id="minimap-open" aria-label="Open full position map"><canvas id="minimap" width="600" height="300" aria-label="Position map with apartments A, B and C"></canvas></button></div>
+<div id="touch-move" hidden><button data-move="forward" aria-label="Move forward">↑</button><div><button data-move="left" aria-label="Move left">←</button><button data-move="backward" aria-label="Move backward">↓</button><button data-move="right" aria-label="Move right">→</button></div></div>
+<div class="bottom-controls"><div class="view-switch" role="group" aria-label="View mode"><button data-mode="exterior" class="active" aria-pressed="true"><span>◇</span> Exterior</button><button data-mode="dollhouse" aria-pressed="false"><span>▧</span> Dollhouse</button><button data-mode="walk" aria-pressed="false"><span>⌖</span> Walkthrough</button></div><div class="view-hint" id="view-hint"><span>DRAG TO ROTATE</span><i></i><span>SCROLL TO ZOOM</span></div></div>
+<div class="model-note"><button id="model-info">ⓘ About this model</button><span id="model-status">3D EXPLORER</span></div>
+<div id="toast" role="status"></div>
+</section>
+</main>
+<dialog id="map-dialog" aria-labelledby="map-title"><button class="close-dialog" aria-label="Close position map">×</button><div class="eyebrow">YOUR POSITION · FLOOR <span id="map-floor">01</span></div><h2 id="map-title">Three distinct homes.</h2><p class="map-instruction">Select a room to step inside. The dot shows your position and view direction.</p><div class="map-legend"><button data-map-flat="A"><b>A</b><span>Apartment A<small>3 beds · 1,545 sq. ft.</small></span></button><button data-map-flat="B"><b>B</b><span>Apartment B<small>2 beds · 875 sq. ft.</small></span></button><button data-map-flat="C"><b>C</b><span>Apartment C<small>3 beds · 1,485 sq. ft.</small></span></button></div><canvas id="expanded-map" aria-label="Full floor map. Select a room to visit it."></canvas><div class="map-key"><span><i class="position-dot"></i>You are here</span><span><i class="entry-dot"></i>Apartment entrance</span><span><i class="common-dot"></i>Shared lobby</span></div></dialog>
+<dialog id="info-dialog"><button class="close-dialog" aria-label="Close">×</button><div class="eyebrow">A NOTE ON THE MODEL</div><h2>A vision of your home.</h2><p>This interactive interpretation follows the typical floor plan and exterior illustration in the Arjith Anugraha brochure.</p><p>Apartment areas and room dimensions are taken from the brochure. Wall positions are traced from the drawing. Ceiling heights, finishes, furnishings, landscape, parking and unseen elevations are illustrative.</p><p>Five residential floors above a ground-level entrance are inferred from the 15-home brief and three flats per typical floor. The same typical plan is used for every floor. This is a spatial preview, not a construction or approval drawing.</p><p class="muted">Flat A’s duplicate bedroom labels have been renamed for easier navigation. No claim is made about carpet area, structural accuracy or final finishes.</p><p class="muted">2K materials and furniture models from <a href="https://polyhaven.com" target="_blank" rel="noopener">Poly Haven</a>, licensed CC0. <a href="assets/credits.html" target="_blank">View asset credits</a>.</p></dialog>
+<dialog id="help-dialog"><button class="close-dialog" aria-label="Close">×</button><div class="eyebrow">MAKE YOURSELF AT HOME</div><h2>Explore at your pace.</h2><dl><dt>Exterior & dollhouse</dt><dd>Drag to rotate. Scroll or pinch to zoom. Right-drag or two-finger drag to pan.</dd><dt>Walkthrough</dt><dd>Click clear floor space to walk there automatically around furniture and walls. Drag to look around. Press Esc or Stop walking to stop. You can also use W A S D or the arrow keys. On touch screens, use the direction buttons.</dd><dt>Visit a room</dt><dd>Choose a room from the list or use the arrows. Click a room marker in dollhouse view to step inside.</dd><dt>Expand your position map</dt><dd>Use ⛶ on the mini-map to see all three homes, their entrances and room names. Select a room to visit it, or an apartment card to enter its living room.</dd><dt>Return to the overview</dt><dd>Choose Exterior or Dollhouse at any time. Press Esc to close a panel.</dd></dl></dialog>
+<dialog id="plan-dialog"><button class="close-dialog" aria-label="Close">×</button><div class="eyebrow">THE ORIGINAL DRAWING</div><h2>Three homes. One thoughtful plan.</h2><img src="assets/floor-plan.png" alt="Original brochure typical floor plan showing Flat C on the left, Flat B in the middle, Flat A on the right, and shared stairs and lift."><p>Areas as advertised in the brochure. North faces Jayanagar 2nd Street.</p></dialog>
+<script>
+function showTourError(){const el=document.getElementById('loading');if(el){el.style.opacity=1;el.innerHTML='<strong>The 3D view could not start.</strong><span>Reload the page or open this tour in an up-to-date Chrome or Safari browser with WebGL enabled.</span>';}}
+window.addEventListener('error',showTourError);window.addEventListener('unhandledrejection',showTourError);
+</script>
+<script type="module" src="app.js"></script>
+</body></html>

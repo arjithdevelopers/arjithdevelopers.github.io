@@ -294,11 +294,13 @@ p { text-wrap: pretty; }
   .allure__grid, .why__grid, .about__grid, .contact__grid { grid-template-columns: 1fr; }
   .about__card { order: -1; }
 }
-@media (max-width: 720px) {
+@media (max-width: 1040px) {
   .nav__links, .nav__cta { display: none; }
   .nav__toggle { display: flex; }
   .mobile-menu { display: none; }
   .mobile-menu.is-open { display: block; padding: 0.5rem clamp(1.2rem, 4vw, 2.5rem) 1.5rem; background: oklch(0.15 0.012 70 / 0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+}
+@media (max-width: 720px) {
   .trust__row { grid-template-columns: 1fr 1fr; }
   .trust__item:nth-child(2) { border-left: 0; }
   .trust__item:nth-child(3), .trust__item:nth-child(4) { border-top: 1px solid var(--line); }

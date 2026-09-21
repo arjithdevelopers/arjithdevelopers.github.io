@@ -38,7 +38,7 @@
     setMenu(false);
     toggle.addEventListener("click", function () { setMenu(toggle.getAttribute("aria-expanded") !== "true"); });
     menu.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
-    window.addEventListener("resize", function () { if (window.innerWidth > 720) setMenu(false); });
+    window.addEventListener("resize", function () { if (window.innerWidth > 1040) setMenu(false); });
   }
 
   /* --------------------------- scroll reveal (safe) --------------------------- */
