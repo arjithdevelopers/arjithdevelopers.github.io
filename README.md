@@ -21,3 +21,7 @@ python3 -m http.server 4174 --bind 127.0.0.1
 Open `http://127.0.0.1:4174/` and follow **Anugraha 3D tour**, or open `http://127.0.0.1:4174/anugraha/` directly. The tour header links back to the company website.
 
 Push static-file changes to `main` to trigger the existing GitHub Pages deployment. `.nojekyll` preserves direct asset serving. No custom domain is configured: do not add a `CNAME` file unless a domain migration is intended.
+
+## Redirect recovery
+
+The previous custom domain returned permanent redirects that browsers may retain. The homepage tour links and tour return link include `?v=pages-20260921` to use a fresh cache key after the custom-domain removal. The clean routes remain `/` and `/anugraha/`. If an old bookmark still redirects, use `https://arjithdevelopers.github.io/anugraha/?v=pages-20260921` or clear that browser's cached redirect.
